@@ -88,8 +88,31 @@ const App = () => {
                 bottleCounts[bottle.id] > 0 && (
                   <li key={bottle.id} className="py-2 flex justify-between">
                     <span>{bottle.name} (x{bottleCounts[bottle.id]})</span>
-                    <span className="font-medium">{(bottle.weight * bottleCounts[bottle.id]).toFixed(2)} kg</span>
-                  </li>
+                    {selectedBottles.length > 0 && (
+  <div className="mt-8">
+    {/* ... */}
+    <div className="bg-white rounded-lg shadow p-4">
+      <ul className="divide-y divide-gray-200">
+        {bottleTypes.map(bottle => (
+          bottleCounts[bottle.id] > 0 && (
+            <li key={bottle.id} className="py-2 flex justify-between">
+              <span>{bottle.name} (x{bottleCounts[bottle.id]})</span>
+              {/* ===> MODIFICACIÓN AQUÍ <=== */}
+              <span className="font-medium">
+                  {(() => {
+                      const individualTotalWeight = bottle.weight * bottleCounts[bottle.id];
+                      return individualTotalWeight >= 1000
+                          ? `${(individualTotalWeight / 1000).toFixed(0)} Kg` // Si es 1000g o más, a Kg
+                          : `${individualTotalWeight.toFixed(2)} g`; // Si es menos de 1000g, a gramos
+                  })()}
+              </span>
+            </li>
+          )
+        ))}
+      </ul>
+    </div>
+  </div>
+)}</li>
                 )
               ))}
             </ul>
