@@ -103,7 +103,7 @@ const App = () => {
                       const individualTotalWeight = bottle.weight * bottleCounts[bottle.id];
                       return individualTotalWeight >= 1000
                           ? `${(individualTotalWeight / 1000).toFixed(0)} Kg` // Si es 1000g o más, a Kg
-                          : `${individualTotalWeight.toFixed(2)} g`; // Si es menos de 1000g, a gramos
+                          : `${individualTotalWeight.toFixed(0)} g`; // Si es menos de 1000g, a gramos
                   })()}
               </span>
             </li>
